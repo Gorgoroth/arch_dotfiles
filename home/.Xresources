@@ -1,0 +1,15 @@
+Xcursor.theme: Vanilla-DMZ
+! --[ Font Rendering  ]-------------------------------------
+Xft.dpi: 98
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintfull
+Xft.autohint: true
+Xft.lcdfilter: lcddefault
+
+
+! --[ URxvt - colors  ]--------------------------------------
+URxvt.depth: 32
+URxvt.background:#222222
+URxvt.foreground:#eeeeee

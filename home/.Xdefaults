@@ -1,0 +1,5 @@
+urxvt*font: xft: Symbola: size=10
+urxvt*font: xft: Ubuntu Mono: size=10
+urxvt*loginShell: true
+urxvt*scrollBar: false
+urxvt*internalBorder: 0

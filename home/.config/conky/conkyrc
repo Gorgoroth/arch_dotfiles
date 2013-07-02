@@ -1,0 +1,70 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+# Update interval in seconds
+update_interval 2.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+pad_percents 3
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address.
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer none
+use_spacer left
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Stuff after 'TEXT' will be formatted on screen
+TEXT
+
+# JSON for i3bar
+# Some symbols
+# ◀ ◈ ◉ ▣ ■ ▪ ▲ ▴ • ‣ ※ ⌖ ⏚ ☠
+# ☀ ☁ ☃ ☇ ☈ ☔
+# ⚔ ⚓ ☠
+# 🌍
+
+[\
+  { "full_text" : "☠ ${upspeed wlp2s0}/${downspeed wlp2s0}" },\
+  { "full_text" : "🌍 ${execi 64000 wget -O - http://ip.tupeux.com | tail}" },\
+  { "full_text" : "⚓  ${addr wlp2s0}" },\
+  { "full_text" : "⚙ SWP ${swapperc}%" , "color" : ${if_match ${swapperc}<90}"\#ffffff"${else}"\#ff0000"${endif} },\
+  { "full_text" : "RAM ${memperc}%" , "color" : ${if_match ${memperc}<90}"\#ffffff"${else}"\#ff0000"${endif} },\
+  { "full_text" : "CPU ${cpu}%", "color" : ${if_match ${cpu}<90}"\#ffffff"${else}"\#ff0000"${endif} },\
+  { "full_text" : "⚔ ${uptime_short}" },\
+  { "full_text" : "☀"  },\
+  { "full_text" : "${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ EDDT weather -}" },\
+  { "full_text" : "${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ EDDT temperature}°C" },\
+  { "full_text" : "📶 ${wireless_link_qual_perc wlp2s0}% ${wireless_bitrate wlp2s0}" , "color" : ${if_match ${wireless_link_qual_perc wlp2s0}<60}"\#bf3f34"${else}"\#ffffff"${endif} },\
+  ${if_match "${battery_short}" == "C 0%" }
+    { "full_text" : "🔌" },\
+  ${else}
+    { "full_text" : "🔋" },\
+  ${endif}
+  { "full_text" : "${battery_percent BAT0}%" , "color" : ${if_match ${battery_percent BAT0}<30}"\#bf3f34"${else}"\#315858"${endif} },\
+  ${if_mixer_mute}
+    { "full_text" : "🔇" },\
+  ${else}
+    { "full_text" : "🔊 ${mixer}" },\
+  ${endif}
+  { "full_text" : "⌚ ${tztime Europe/Berlin %Y-%m-%d %H:%M}" }\
+],
